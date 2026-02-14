@@ -1,14 +1,24 @@
-import { useState } from "react";
 import TextComponent from "../components/TextComponents";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useLoginContext } from "../context/userApiContext";
+import { isValidAlgerianPhone } from "../utils/phonValidation";
+
+
 
 export default function Register ({hidden}) {
+
         const isMobile = useMediaQuery("(max-width: 720px)");
         const navigate=useNavigate()
-    const [userName,setUserName]=useState('')
-    const [password,setPassword]=useState('')
+    const {
+    userNameRegister,
+    nameRegister,
+    numberRegister,
+    setUserNameRegister,
+    setNumberRegister,
+    setNameRegister,
+    }=useLoginContext()
     return (
         <div 
         style={{
@@ -16,12 +26,14 @@ export default function Register ({hidden}) {
             height:'100vh',
             display:hidden?'none':'flex',
             justifyContent:'center',
-            alignItems:'center'
+            alignItems:'center',
+            position:'absolute',
+            right:'0'
         }}
         >
             <div
              style={{
-            width:!hidden&&isMobile?'80vw':'35vw',
+            width:!hidden&&isMobile?'90vw':'35vw',
             height:'90vh',
             display:'flex',
             justifyContent:'center',
@@ -31,20 +43,25 @@ export default function Register ({hidden}) {
              }}
             >
             <h1 style={{marginTop:'10%',marginBottom:'20px'}} >Sign up</h1>
-            <TextComponent label={'Full name'} placeholder={'Enter your name here'} width={'100%'} value={userName} setValue={setUserName} />
-            <TextComponent label={'Username'} placeholder={'Enter your username here'} width={'100%'} value={userName} setValue={setUserName} />
-            <TextComponent label={'Password'} placeholder={'Enter your password here'} width={'100%'} value={password} setValue={setPassword} />
-            <Button variant="contained"
+            <TextComponent label={'Full name'} placeholder={'Enter your name here'} width={'100%'} value={nameRegister} setValue={setNameRegister} />
+            <TextComponent label={'Username'} placeholder={'Enter your username here'} width={'100%'} value={userNameRegister} setValue={setUserNameRegister} />
+            <TextComponent label={'NUmber phone'} placeholder={'Enter your username here'} width={'100%'} value={numberRegister} setValue={setNumberRegister} />
+             <p style={{width:'100%',fontSize:'12px',fontWeight:'500',color:'gray'}} >Your phone number must begin with +213 (+9 digits)</p>
+            <Button 
+            variant="contained"
+            // disabled={ !userNameRegister ||!nameRegister ||!isValidAlgerianPhone(numberRegister)}
             sx={{
                 background:'#8371f9',
                 borderRadius:'35px',
                 padding:'10px 25px',
                 marginTop:'30px'
             }}
-            >Sign up</Button>
+            onClick={()=>{navigate('/register/next')}}
+            >Next</Button>
             <p>Already have accont?<span style={{fontWeight:'700',cursor:'pointer'}}  onClick={()=>{navigate('/login')}} > Login</span></p>
             <p className="separeOR" >OR</p>
-            <div style={{
+            <div 
+            style={{
                 width:!hidden&&isMobile?'80%':'60%',
                 display:'flex',
                 justifyContent:'center',

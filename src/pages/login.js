@@ -1,16 +1,15 @@
-import { useState } from "react";
 import TextComponent from "../components/TextComponents";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useLoginContext } from "../context/userApiContext";
 
 
 
 export default function Login ({hidden}) {
     const isMobile = useMediaQuery("(max-width: 720px)");
     const navigate=useNavigate()
-    const [userName,setUserName]=useState('')
-    const [password,setPassword]=useState('')
+    const {handeLogin,userNameLogin,setUserNameLogin,passwordLogin,setPasswordLogin,isLaoding}=useLoginContext()
     return (
         <div 
         style={{
@@ -23,7 +22,7 @@ export default function Login ({hidden}) {
         >
             <div
              style={{
-            width:!hidden&&isMobile?'80vw':'35vw',
+            width:!hidden&&isMobile?'90vw':'35vw',
             height:'90vh',
             display:'flex',
             justifyContent:'center',
@@ -33,19 +32,27 @@ export default function Login ({hidden}) {
              }}
             >
             <h1 style={{marginTop:'20%',marginBottom:'20px'}} >Login</h1>
-            <TextComponent label={'Username'} placeholder={'Enter your username here'} width={'100%'} value={userName} setValue={setUserName} />
-            <TextComponent label={'Password'} placeholder={'Enter your password here'} width={'100%'} value={password} setValue={setPassword} />
-            <Button variant="contained"
-            sx={{
-                background:'#8371f9',
-                borderRadius:'35px',
-                padding:'10px 25px',
-                marginTop:'30px'
-            }}
-            >Login</Button>
-            <p>Don't have an account?<span style={{fontWeight:'700',cursor:'pointer'}} onClick={()=>{navigate('/sing')}} > Sign up</span></p>
+            <TextComponent label={'Username'} placeholder={'Enter your username here'} width={'100%'} value={userNameLogin} setValue={setUserNameLogin} />
+            <TextComponent label={'Password'} placeholder={'Enter your password here'} width={'100%'} value={passwordLogin} setValue={setPasswordLogin} />
+     <Button 
+    //  disabled={!userNameLogin || !passwordLogin}
+  variant="contained"
+  sx={{
+    background:'#8371f9',
+    borderRadius:'35px',
+    padding:'10px 25px',
+    marginTop:'30px',
+    height:'40px,'
+  }}
+  onClick={() => handeLogin(userNameLogin, passwordLogin)} // ✅ تمرير القيم
+>
+  {isLaoding?<div class="loader"></div>:'login'}
+</Button>
+
+            <p>Don't have an account?<span style={{fontWeight:'700',cursor:'pointer'}} onClick={()=>{navigate('/register')}} > Sign up</span></p>
             <p className="separeOR" >OR</p>
-            <div style={{
+            <div
+             style={{
                 width:!hidden&&isMobile?'80%':'60%',
                 display:'flex',
                 justifyContent:'center',
