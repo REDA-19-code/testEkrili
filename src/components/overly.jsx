@@ -7,11 +7,10 @@ export default function LogInAndRegister() {
     const location = useLocation();
 const isMobile = useMediaQuery("(max-width: 720px)");
 
-const [isLogin, setIsLogin] = useState(location.pathname !== "/login");
+const [isLogin, setIsLogin] = useState(!location.pathname.startsWith("/login"));
         useEffect(() => {
-        setIsLogin(location.pathname !== "/login");
+        setIsLogin(!location.pathname.startsWith("/login"));
         }, [location.pathname]);
-
     const message = {
     login: {
             title: "Welcome back",

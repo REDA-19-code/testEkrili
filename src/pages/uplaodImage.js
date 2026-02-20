@@ -7,8 +7,7 @@ import { Button } from "@mui/material";
 
 export default function UplaodImage ({hidden}) {
         const isMobile = useMediaQuery("(max-width: 720px)");
-        const {profileImage,setProfileImage}=useLoginContext()
-        const navigate=useNavigate()
+        const {profileImage,setProfileImage,handelUpdate}=useLoginContext()
     return (
         <div 
         style={{
@@ -56,7 +55,8 @@ export default function UplaodImage ({hidden}) {
                     cancel 
                 </Button>
                 <Button
-                // disabled={!profileImage}
+                onClick={handelUpdate}
+                disabled={!profileImage}
                 variant="contained"
                 sx={{
                     background:'#8371f9',

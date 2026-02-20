@@ -45,11 +45,11 @@ export default function Register ({hidden}) {
             <h1 style={{marginTop:'10%',marginBottom:'20px'}} >Sign up</h1>
             <TextComponent label={'Full name'} placeholder={'Enter your name here'} width={'100%'} value={nameRegister} setValue={setNameRegister} />
             <TextComponent label={'Username'} placeholder={'Enter your username here'} width={'100%'} value={userNameRegister} setValue={setUserNameRegister} />
-            <TextComponent label={'NUmber phone'} placeholder={'Enter your username here'} width={'100%'} value={numberRegister} setValue={setNumberRegister} />
+            <TextComponent label={'Number phone'} placeholder={'Enter your username here'} width={'100%'} value={numberRegister} setValue={setNumberRegister} />
              <p style={{width:'100%',fontSize:'12px',fontWeight:'500',color:'gray'}} >Your phone number must begin with +213 (+9 digits)</p>
             <Button 
             variant="contained"
-            // disabled={ !userNameRegister ||!nameRegister ||!isValidAlgerianPhone(numberRegister)}
+            disabled={ !userNameRegister ||!nameRegister ||!isValidAlgerianPhone(numberRegister)}
             sx={{
                 background:'#8371f9',
                 borderRadius:'35px',

@@ -21,14 +21,14 @@ export const LoginProvider = ({ children }) => {
 const handeLogin = async (userNameLogin, passwordLogin) => {
     setIsLaoding(true)
   try {
-    // const response = await axios.post(`${apiUrl}/users/login`, {
-    //   userName: userNameLogin,
-    //   password: passwordLogin
-    // });
+    const response = await axios.post(`${apiUrl}/users/login`, {
+      userName: userNameLogin,
+      password: passwordLogin
+    });
 
-    // console.log("Login Success:", response.data);
+    console.log("Login Success:", response.data);
     navigate("/")
-    // saveToken(response.data.token)
+    saveToken(response.data.token)
 
   } catch (error) {
     console.error("Login Failed:", error.response?.data || error.message);
@@ -47,15 +47,15 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
     
     setIsLaoding(true)
   try {
-    // const response = await axios.post(`${apiUrl}/users/register`, {
-    //    name:nameRegister, 
-    //    userName:userNameRegister, 
-    //    password:passwordRegister,
-    //   numberPhone:numberRegister
-    // });
+    const response = await axios.post(`${apiUrl}/users/register`, {
+       name:nameRegister, 
+       userName:userNameRegister, 
+       password:passwordRegister,
+      numberPhone:numberRegister
+    });
 
-    // console.log("creat accont Success:", response.data);
-    //     saveToken(response.data.token)
+    console.log("creat accont Success:", response.data);
+        saveToken(response.data.token)
         navigate("/register/next/uplaod")
 
   } catch (error) {
@@ -73,15 +73,25 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
   const handelUpdate=async()=>{
     setIsLaoding(true)
   try {
-    // const response = await axios.put(`${apiUrl}/users/`, {
-    //    name, 
-    //    userName,
-    //    profileImage 
-    // });
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("userName", userName);
+      formData.append("profileImage", profileImage);
+      const response = await axios.put(
+        `${apiUrl}/users/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`, 
+          },
+        }
+      );
 
-    // console.log("update accont Success:", response.data);
-    //     saveToken(response.data.token)
-        navigate("/register/next/uplaod")
+console.log("update account Success:", response.data);
+saveToken(response.data.token);
+
+        navigate("/")
 
   } catch (error) {
     console.error("Login Failed:", error.response?.data || error.message);
@@ -111,7 +121,8 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
     setNameRegister,
     setPasswordRegister,
     setProfileImage,
-    profileImage
+    profileImage,
+    handelUpdate
 
     };
 

@@ -8,18 +8,19 @@ import PageWrapper from "./components/PageWrapper";
 import { LoginProvider } from "./context/userApiContext";
 import { DataProvider } from "./context/dataContext";
 import UplaodImage from "./pages/uplaodImage";
+import Home from "./pages/home";
 
 
 
 
 function App() {
     const location = useLocation();
-    
+    const isLogin=location.pathname.startsWith("/login")||location.pathname.startsWith("/register")
   return (
     <div className="App">
       <DataProvider>
       <LoginProvider>
-        <Overly/>
+        {isLogin? <Overly/>:null}
       <AnimatePresence exitBeforeEnter>
        <Routes location={location} key={location.pathname} >
         <Route path="/login" element={
@@ -35,6 +36,9 @@ function App() {
           </PageWrapper>} />
           <Route path="/register/next/uplaod" element={<PageWrapper>
             <UplaodImage />
+          </PageWrapper>} />
+          <Route path="/" element={<PageWrapper>
+            <Home />
           </PageWrapper>} />
 
       </Routes>

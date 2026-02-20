@@ -42,10 +42,10 @@ export default function RegisterNext ({hidden}) {
 
             <Button variant="contained"
             onClick={handeLRegister}
-            // disabled={
-            // password !== passwordRegister ||
-            // passwordRegister.length < 6
-            // }
+            disabled={
+            password !== passwordRegister ||
+            passwordRegister.length < 6
+            }
             sx={{
                 background:'#8371f9',
                 borderRadius:'35px',

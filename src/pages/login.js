@@ -35,7 +35,7 @@ export default function Login ({hidden}) {
             <TextComponent label={'Username'} placeholder={'Enter your username here'} width={'100%'} value={userNameLogin} setValue={setUserNameLogin} />
             <TextComponent label={'Password'} placeholder={'Enter your password here'} width={'100%'} value={passwordLogin} setValue={setPasswordLogin} />
      <Button 
-    //  disabled={!userNameLogin || !passwordLogin}
+     disabled={!userNameLogin || !passwordLogin}
   variant="contained"
   sx={{
     background:'#8371f9',
