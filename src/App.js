@@ -9,6 +9,7 @@ import { LoginProvider } from "./context/userApiContext";
 import { DataProvider } from "./context/dataContext";
 import UplaodImage from "./pages/uplaodImage";
 import Home from "./pages/home";
+import Dashboard from "./pages/dashboard";
 
 
 
@@ -36,6 +37,9 @@ function App() {
           </PageWrapper>} />
           <Route path="/register/next/uplaod" element={<PageWrapper>
             <UplaodImage />
+          </PageWrapper>} />
+          <Route path="/dashboard" element={<PageWrapper>
+            <Dashboard />
           </PageWrapper>} />
           <Route path="/" element={<PageWrapper>
             <Home />
