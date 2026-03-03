@@ -1,0 +1,23 @@
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: #f5f6fa;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar-menu {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .my-properties {
+    margin-left: 0;
+  }
+}
