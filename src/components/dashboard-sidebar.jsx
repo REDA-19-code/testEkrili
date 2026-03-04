@@ -1,6 +1,6 @@
 import IconCard from "./icons";
 import { DASHBOARD_PATH } from "./routes";
-import "./dashboard-sidebar.css";
+import "../styles/dashboard-sidebar.css";
 
 function Sidebar() {
   return (

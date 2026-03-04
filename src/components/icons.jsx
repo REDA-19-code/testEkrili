@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./icons.css";
+import "../styles/icons.css";
 
 export function IconCard({
   icon,

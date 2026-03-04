@@ -1,14 +1,14 @@
 .my-properties {
   flex: 1;
   margin-left: 16px;
-  background: #ffffff;
+  background: transparent;
   border-radius: 14px;
   padding: 16px;
 }
 
 .my-properties__title {
-  margin: 0 0 14px;
-  font-size: 20px;
+  margin: 0 0 25px;
+  font-size: 30px;
   color: #15173d;
 }
 

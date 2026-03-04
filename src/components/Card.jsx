@@ -5,6 +5,7 @@ import BathtubIcon from "@mui/icons-material/Bathtub";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import '../styles/card.css'
 
 function PropertyCard({ cardData, onViewDetails }) {
     const rating = Math.max(0, Math.min(5, Number(cardData.rating) || 0));

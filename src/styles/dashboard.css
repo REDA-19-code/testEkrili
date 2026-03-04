@@ -12,10 +12,7 @@
     flex-direction: column;
   }
 
-  .sidebar-menu {
-    width: 100%;
-    min-width: 0;
-  }
+
 
   .my-properties {
     margin-left: 0;
