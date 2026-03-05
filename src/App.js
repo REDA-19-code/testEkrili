@@ -10,8 +10,9 @@ import { DataProvider } from "./context/dataContext";
 import UplaodImage from "./pages/uplaodImage";
 import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
-
-
+import Add from "./pages/Add";
+ import Edit from './pages/Edit';
+ 
 
 
 function App() {
@@ -44,6 +45,14 @@ function App() {
           <Route path="/" element={<PageWrapper>
             <Home />
           </PageWrapper>} />
+          <Route path="/Add"element={<PageWrapper>
+           <Add />
+          </PageWrapper>}/>
+          <Route path="/Edit" element={<PageWrapper>
+          <Edit />
+          </PageWrapper>} />
+          
+          
 
       </Routes>
     </AnimatePresence>
