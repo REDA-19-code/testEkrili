@@ -23,25 +23,6 @@ function MyProperties({ cards = [] }) {
           ))}
         </div>
       )}
-
-      {/* CSS داخل نفس الملف */}
-      <style>{`
-        .properties-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-        }
-        @media (max-width: 992px) {
-          .properties-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 600px) {
-          .properties-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </section>
   );
 }

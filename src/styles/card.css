@@ -1,18 +1,8 @@
-/* Cards Container */
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 300px);
-    gap: 8px;
-    padding: 16px;
-    align-items: start;
-    justify-content: start;
-}
+
 
 /* Individual Card */
 .card-item {
     width: 300px;
-    max-width: 300px;
-    min-width: 300px;
     display: flex;
     flex-direction: column;
     height: 330px;

@@ -1,20 +1,10 @@
 .app-layout {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   gap: 16px;
-  padding: 16px;
   background: #f5f6fa;
   box-sizing: border-box;
+  width: 100vw;
+  padding-top:70px ;
 }
 
-@media (max-width: 900px) {
-  .app-layout {
-    flex-direction: column;
-  }
-
-
-
-  .my-properties {
-    margin-left: 0;
-  }
-}

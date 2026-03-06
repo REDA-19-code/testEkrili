@@ -3,7 +3,7 @@
   margin-left: 16px;
   background: transparent;
   border-radius: 14px;
-  padding: 16px;
+  overflow-y: scroll;
 }
 
 .my-properties__title {
@@ -34,4 +34,12 @@
   display: grid;
   place-items: center;
   line-height: 1;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 20px;
+
+  justify-content: center; /* يخلي الكروت في الوسط */
 }

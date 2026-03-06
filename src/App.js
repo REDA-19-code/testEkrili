@@ -10,6 +10,7 @@ import { DataProvider } from "./context/dataContext";
 import UplaodImage from "./pages/uplaodImage";
 import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
+import NavBar from "./components/navBar";
 
 
 
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
       <DataProvider>
       <LoginProvider>
+        <NavBar/>
         {isLogin? <Overly/>:null}
       <AnimatePresence exitBeforeEnter>
        <Routes location={location} key={location.pathname} >
