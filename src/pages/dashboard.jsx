@@ -401,8 +401,6 @@ function Dashboard() {
                 icon={STAT_ICONS[stat.iconKey] || <TrendingUpRoundedIcon fontSize="inherit" />}
                 title={stat.title}
                 value={stat.value}
-                change={stat.change}
-                changeTone={stat.changeTone}
               />
             ))}
           </section>

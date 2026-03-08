@@ -1,10 +1,12 @@
 .box-static {
-  min-height: 108px;
-  padding: 14px 18px 13px;
+  min-height: 100px;
+  padding: 14px;
   border: 1px solid #eee9f5;
   border-radius: 24px;
   background: #ffffff;
   box-shadow: 0 8px 18px rgba(28, 24, 38, 0.05);
+  display: flex;
+  flex-direction: column;
 }
 
 .box-static__top {
@@ -12,17 +14,19 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+  flex: 1;
 }
 
 .box-static__icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
-  background: #f2ebff;
-  color: #814df3;
-  font-size: 18px;
+  background: #f3edff;
+  color: #8f44fd;
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
 .box-static__change {
@@ -51,26 +55,27 @@
   border-color: #f0d6d6;
 }
 
-.box-static__body {
-  margin-top: 9px;
-}
-
 .box-static__title {
   margin: 0;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #494451;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: #6b7280;
+  margin-bottom: 8px;
 }
 
 .box-static__value {
   display: block;
-  margin-top: 6px;
-  font-size: 22px;
-  line-height: 1;
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
   font-weight: 700;
-  color: #231f2c;
+  color: #1f2937;
+}
+
+.box-static__footer {
+  margin-top: 12px;
 }
 
 @media (max-width: 900px) {
