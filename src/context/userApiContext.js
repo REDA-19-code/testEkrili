@@ -1,15 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, use, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDataContext } from "./dataContext";
 // 1. إنشاء Context
 const MyContext = createContext();
 
 // 2. إنشاء Provider
 export const LoginProvider = ({ children }) => {
+  const location=useLocation()
   //-----
   const {saveToken,token}=useDataContext()
+  const [errer,setErrer]=useState({
+    message:'',
+    type:''
+  })
   //----
+  useEffect(()=>{
+    setErrer({})
+  },[location.pathname])
 
   //login api
   const navigate=useNavigate()
@@ -21,17 +29,19 @@ export const LoginProvider = ({ children }) => {
 const handeLogin = async (userNameLogin, passwordLogin) => {
     setIsLaoding(true)
   try {
-    const response = await axios.post(`${apiUrl}/users/login`, {
-      userName: userNameLogin,
+    const response = await axios.post(`${apiUrl}/user/login`, {
+      email: userNameLogin.trim(),
       password: passwordLogin
     });
 
     console.log("Login Success:", response.data);
     navigate("/")
     saveToken(response.data.token)
-
+    setEmailVerify(email)
   } catch (error) {
     console.error("Login Failed:", error.response?.data || error.message);
+    setErrer( error.response?.data)
+    console.log(errer)
   }finally{
     setIsLaoding(false)
   }
@@ -39,90 +49,90 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
 //-------
 
 //register api 
-    const [userNameRegister,setUserNameRegister]=useState('')
+    const [FirstameRegister,setFirstNameRegister]=useState('')
     const [passwordRegister,setPasswordRegister]=useState('')
-    const [nameRegister,setNameRegister]=useState('')
+    const [LastNameRegister,setLastNameRegister]=useState('')
     const [numberRegister,setNumberRegister]=useState('')
+    const [email,setEmail]=useState('');
+    const [isOwner,setIsOwner]=useState(false)
     const handeLRegister = async () => {
     
     setIsLaoding(true)
   try {
-    const response = await axios.post(`${apiUrl}/users/register`, {
-       name:nameRegister, 
-       userName:userNameRegister, 
+    const response = await axios.post(`${apiUrl}/user/register`, {
+       name:FirstameRegister.trim(), 
+       famillyname:LastNameRegister.trim(), 
        password:passwordRegister,
-      numberPhone:numberRegister
+      phone:numberRegister.trim(),
+      email,
+      isLessor:isOwner
     });
 
     console.log("creat accont Success:", response.data);
-        saveToken(response.data.token)
-        navigate("/register/next/uplaod")
-
+    navigate('/verify',{ state: { email} })
+    setEmailVerify(email)
   } catch (error) {
     console.error("Login Failed:", error.response?.data || error.message);
+    setErrer( error.response?.data)
+    console.log(errer)
   }finally{
     setIsLaoding(false)
   }
 };
-//---------
-
-//update api 
-  const [profileImage,setProfileImage]=useState(null)
-  const [userName,setUserName]=useState(null)
-  const [name,setName]=useState(null)
-  const handelUpdate=async()=>{
-    setIsLaoding(true)
-  try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("userName", userName);
-      formData.append("profileImage", profileImage);
-      const response = await axios.put(
-        `${apiUrl}/users/`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`, 
-          },
-        }
-      );
-
-console.log("update account Success:", response.data);
-saveToken(response.data.token);
-
-        navigate("/")
-
-  } catch (error) {
-    console.error("Login Failed:", error.response?.data || error.message);
-  }finally{
-    setIsLaoding(false)
-  }
-
-  }
-
 
 //-------
+//verify email 
+const [code,setCode]=useState(Array(6).fill(""))
+const [emailVerify,setEmailVerify]=useState('')
+
+const handelVerify=async ()=>{
+  const finalCode = code.join("");
+  try {
+    const response = await axios.post(`${apiUrl}/user/verify`, {
+      email:emailVerify,
+      code:finalCode
+    });
+    console.log(response.data)
+    navigate('/')
+
+}catch (error) {
+console.error( error.response?.data || error.message);
+}
+}
+
+const handelSendCode=async()=>{
+  const response = await axios.post(`${apiUrl}/user/send-code`, {
+      email:emailVerify,
+    });
+    console.log(response.data)
+}
 
   const value = {
+    handelVerify,
+    handelSendCode,
+    code,
+    setCode,
     handeLogin,
     userNameLogin,
     setUserNameLogin,
     passwordLogin,
     setPasswordLogin,
     isLaoding,
-    userNameRegister,
+    FirstameRegister,
     passwordRegister,
-    nameRegister,
+    LastNameRegister,
     numberRegister,
     handeLRegister,
-    setUserNameRegister,
+    setFirstNameRegister,
     setNumberRegister,
-    setNameRegister,
+    setLastNameRegister,
     setPasswordRegister,
-    setProfileImage,
-    profileImage,
-    handelUpdate
+    email,
+    setEmail,
+    isOwner,
+    setIsOwner,
+    errer,
+    emailVerify
 
     };
 

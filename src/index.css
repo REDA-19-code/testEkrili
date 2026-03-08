@@ -45,18 +45,12 @@ code {
 }
 
 .overly {
-  width: 40vw;
-  height: 95vh;
-  background-color: rgba(55, 0, 255, 0.358);
-  position:absolute;
+  width: 50vw;
+  height: 100vh;
+  position:relative;
   z-index: 2;
   transition: 0.5s;
-  background-image: url('../public/images/side right.png');
-    background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  top: 50%;
-  transform:translateY(-50%) ;
+
   justify-content: center;
   align-items: center;
   color: white;
@@ -64,27 +58,29 @@ code {
   
 }
 .overly .overly-continer {
-  width: 85%;
-  height: 80%;
-  background-color: #B7E9F640;
-  box-shadow:0 0 0px 1px #ffffffba;
-  border-radius:10px;
   display: flex;
-  align-items: center;
+  align-items: safe;
   flex-direction: column;
-  backdrop-filter:blur(10px);
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 80%;
+  margin-top: 20px;
 }
 .overly .overly-continer h1 {
   font-size: 45px;
-  font-weight: 600;
+  font-weight: 700;
+  color: black;
+  line-height:1;
 }
 .overly .overly-continer .description {
   overflow-wrap: break-word;
-  width: 80%;
-  text-align: center;
-  font-size: 25px;
+  width: 100%;
+  text-align: start;
+  font-size: 18px;
   font-weight: 400;
+    margin-top: 15px;
+    
 
 }
 
