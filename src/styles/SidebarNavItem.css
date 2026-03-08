@@ -1,7 +1,7 @@
 .icon-card {
   --icon-base-color: #74707d;
   --icon-hover-bg: #eee8f7;
-  --icon-active-bg: linear-gradient(135deg, #8f44fd 0%, #7a46f2 100%);
+  --icon-active-bg: linear-gradient(135deg, #7f72d8 0%, #7268c9 100%);
   --icon-active-color: #ffffff;
   display: flex;
   align-items: center;
@@ -21,6 +21,11 @@
     transform 0.18s ease;
   box-sizing: border-box;
   max-width: 100%;
+}
+
+.icon-card[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.78;
 }
 
 .icon-card--full {
@@ -47,10 +52,16 @@
   color: #5b5665;
 }
 
+.icon-card[aria-disabled="true"]:hover {
+  background: transparent;
+  color: var(--icon-base-color);
+  transform: none;
+}
+
 .icon-card.is-active {
   background: var(--icon-active-bg);
   color: var(--icon-active-color);
-  box-shadow: 0 12px 24px rgba(122, 70, 242, 0.24);
+  box-shadow: 0 12px 24px rgba(114, 104, 201, 0.2);
 }
 
 .icon-card.is-active:hover {
@@ -66,13 +77,13 @@
   display: inline-grid;
   place-items: center;
   background: #efe7ff;
-  color: #7b4de4;
+  color: #6f63cb;
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
   flex: 0 0 auto;
   border: 1px solid #e3d6ff;
-  box-shadow: 0 6px 14px rgba(143, 68, 253, 0.12);
+  box-shadow: 0 6px 14px rgba(114, 104, 201, 0.1);
 }
 
 .icon-card--danger {

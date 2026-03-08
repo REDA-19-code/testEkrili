@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../context/dataContext";
 import SidebarProfileCard from "./SidebarProfileCard";
 import SupportCard from "./SupportCard";
-import "../styles/dashboard-sidebar.css";
+import "../styles/NavigationSidebar.css";
 
 const getBadgeValue = (value) => {
   if (value === null || value === undefined || value === "") {
@@ -67,7 +67,12 @@ function NavigationSidebar({ badges, isOpen = false, onClose = () => {} }) {
   const navigate = useNavigate();
   const { logout, displayName, userRole, userAvatar } = useDataContext();
   const topItems = buildTopItems(badges);
+  const handlePlaceholderClick = () => {
+    onClose();
+  };
+
   const handleLogout = () => {
+    onClose();
     logout();
     navigate("/");
   };
@@ -95,6 +100,7 @@ function NavigationSidebar({ badges, isOpen = false, onClose = () => {} }) {
       />
 
       <div className="sidebar-menu__panel">
+        <div className="sidebar-menu__section-label">Workspace</div>
         <div className="sidebar-menu__items">
           {topItems.map(({ icon: ItemIcon, text, link, badge, badgeClassName }) => (
             <SidebarNavItem
@@ -102,6 +108,7 @@ function NavigationSidebar({ badges, isOpen = false, onClose = () => {} }) {
               icon={<ItemIcon fontSize="inherit" />}
               text={text}
               link={link}
+              onClick={link ? onClose : handlePlaceholderClick}
               badge={badge}
               badgeClassName={badgeClassName}
               fullWidth
@@ -111,22 +118,24 @@ function NavigationSidebar({ badges, isOpen = false, onClose = () => {} }) {
         </div>
       </div>
 
-      <SupportCard
-        compact
-        className="sidebar-menu__support"
-        title="Need assistance?"
-        description="Our concierge team is available 24/7 for premium owners."
-        buttonLabel="Open Support Chat"
-      />
+      <div className="sidebar-menu__footer">
+        <SidebarNavItem
+          icon={<LogoutRoundedIcon fontSize="inherit" />}
+          text="Sign Out"
+          onClick={handleLogout}
+          variant="danger"
+          fullWidth
+          className="sidebar-menu__item sidebar-menu__sign-out"
+        />
 
-      <SidebarNavItem
-        icon={<LogoutRoundedIcon fontSize="inherit" />}
-        text="Sign Out"
-        onClick={handleLogout}
-        variant="danger"
-        fullWidth
-        className="sidebar-menu__item sidebar-menu__sign-out"
-      />
+        <SupportCard
+          compact
+          className="sidebar-menu__support"
+          title="Need assistance?"
+          description="Our concierge team is available 24/7 for premium owners."
+          buttonLabel="Open Support Chat"
+        />
+      </div>
     </nav>
   );
 }

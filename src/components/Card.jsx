@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEllipsisV, FaMapMarkerAlt, FaRegStar, FaStar } from "react-icons/fa";
-import '../styles/card.css'
+import "../styles/Card.css";
 
 function PropertyCard({ cardData }) {
     const rating = Math.max(0, Math.min(5, Number(cardData.rating) || 0));

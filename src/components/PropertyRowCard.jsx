@@ -3,7 +3,33 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { Link } from "react-router-dom";
-import "../styles/dashboard-properties.css";
+import "../styles/PropertyRowCard.css";
+
+const getStatusTone = (status) => {
+  const normalizedStatus = String(status || "").trim().toLowerCase();
+
+  if (!normalizedStatus) {
+    return "default";
+  }
+
+  if (normalizedStatus.includes("active")) {
+    return "active";
+  }
+
+  if (normalizedStatus.includes("pending")) {
+    return "pending";
+  }
+
+  if (normalizedStatus.includes("rent")) {
+    return "rented";
+  }
+
+  if (normalizedStatus.includes("draft")) {
+    return "draft";
+  }
+
+  return "default";
+};
 
 function PropertyRowCard({
   image = "https://via.placeholder.com/56x56",
@@ -15,7 +41,7 @@ function PropertyRowCard({
   leads = 24,
   isNew = true,
 }) {
-  const normalizedStatus = String(status).toLowerCase();
+  const statusTone = getStatusTone(status);
 
   return (
     <article className="dashboard-property-row">
@@ -36,7 +62,7 @@ function PropertyRowCard({
       </div>
 
       <div className="dashboard-property-row__status">
-        <div className={`dashboard-property-row__status-badge dashboard-property-row__status-badge--${normalizedStatus}`}>
+        <div className={`dashboard-property-row__status-badge dashboard-property-row__status-badge--${statusTone}`}>
           {status}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
-import "../styles/sidebar-profile-card.css";
+import "../styles/SidebarProfileCard.css";
 
 const toEnglishRoleLabel = (role) => {
   const normalizedRole = String(role || "").trim().toLowerCase();
@@ -37,33 +37,44 @@ function SidebarProfileCard({
 }) {
   const roleLabel = toEnglishRoleLabel(role);
   const isTenant = roleLabel === "Tenant";
-  const propertiesLabel = Number.isFinite(Number(propertyCount))
-    ? `${propertyCount} Properties`
-    : String(propertyCount || "0 Properties");
+  const propertiesValue = Number.isFinite(Number(propertyCount))
+    ? String(propertyCount)
+    : String(propertyCount || "0");
 
   return (
     <section className="sidebar-profile-card" aria-label="Profile summary">
-      <img src={avatar} alt={name} className="sidebar-profile-card__avatar" />
+      <div className="sidebar-profile-card__top">
+        <div className="sidebar-profile-card__avatar-shell">
+          <img src={avatar} alt={name} className="sidebar-profile-card__avatar" />
+        </div>
 
-      <div className="sidebar-profile-card__identity">
-        <strong className="sidebar-profile-card__name">{name}</strong>
-        <div className="sidebar-profile-card__role-row">
-          <span className="sidebar-profile-card__role">{roleLabel.toUpperCase()}</span>
-          {isTenant ? (
-            <span className="sidebar-profile-card__tenant-rating">
-              <StarBorderRoundedIcon fontSize="inherit" />
-              <span>{rating}</span>
-            </span>
-          ) : null}
+        <div className="sidebar-profile-card__identity">
+          <span className="sidebar-profile-card__eyebrow">Account</span>
+          <strong className="sidebar-profile-card__name">{name}</strong>
+          <div className="sidebar-profile-card__role-row">
+            <span className="sidebar-profile-card__role">{roleLabel}</span>
+          </div>
         </div>
       </div>
 
-      {!isTenant ? (
-        <p className="sidebar-profile-card__meta-line sidebar-profile-card__meta-line--rating">
-          <StarBorderRoundedIcon fontSize="inherit" />
-          <span>{rating} - {propertiesLabel}</span>
-        </p>
-      ) : null}
+      <div className="sidebar-profile-card__stats">
+        <div className="sidebar-profile-card__stat">
+          <span className="sidebar-profile-card__stat-label">Rating</span>
+          <span className="sidebar-profile-card__stat-value">
+            <StarBorderRoundedIcon fontSize="inherit" />
+            <span>{rating}</span>
+          </span>
+        </div>
+        <div className="sidebar-profile-card__divider" aria-hidden="true" />
+        <div className="sidebar-profile-card__stat">
+          <span className="sidebar-profile-card__stat-label">
+            {isTenant ? "Visits" : "Listings"}
+          </span>
+          <span className="sidebar-profile-card__stat-value sidebar-profile-card__stat-value--plain">
+            {propertiesValue}
+          </span>
+        </div>
+      </div>
     </section>
   );
 }

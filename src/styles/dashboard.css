@@ -21,11 +21,24 @@
 }
 
 .dashboard-hero {
-  padding: 0 0 8px;
+  padding: 2px 0 12px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
+}
+
+.dashboard-hero__copy {
+  display: grid;
+  gap: 8px;
+}
+
+.dashboard-hero__eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8b8598;
 }
 
 .dashboard-mobile-nav-btn {
@@ -35,9 +48,9 @@
   margin-bottom: 12px;
   border: 0;
   border-radius: 14px;
-  background: linear-gradient(135deg, #8f44fd 0%, #7a46f2 100%);
+  background: linear-gradient(135deg, #7f72d8 0%, #7268c9 100%);
   color: #ffffff;
-  box-shadow: 0 12px 24px rgba(122, 70, 242, 0.18);
+  box-shadow: 0 12px 24px rgba(114, 104, 201, 0.16);
   font-size: 22px;
   cursor: pointer;
 }
@@ -48,14 +61,17 @@
 
 .dashboard-hero__title {
   margin: 0;
-  font-size: 27px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: #1d1a25;
 }
 
 .dashboard-hero__subtitle {
-  margin: 6px 0 0;
+  margin: 0;
+  max-width: 640px;
   font-size: 14px;
+  line-height: 1.65;
   color: #5f5a68;
 }
 
@@ -122,6 +138,25 @@
   .dashboard-main {
     width: 100%;
     padding: 0;
+    position: relative;
+  }
+
+  .dashboard-main::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 78px;
+    background: #f8f7fb;
+    border-bottom: 1px solid rgba(235, 229, 242, 0.9);
+    box-shadow: 0 8px 20px rgba(28, 24, 38, 0.04);
+    z-index: 21;
+  }
+
+  .dashboard-main--sidebar-open::before {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .dashboard-hero {
@@ -132,15 +167,32 @@
   .dashboard-mobile-nav-btn {
     display: inline-grid;
     place-items: center;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 22;
+    margin-bottom: 0;
+  }
+
+  .dashboard-main--sidebar-open .dashboard-mobile-nav-btn,
+  .dashboard-main--sidebar-open .dashboard-hero__actions {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .dashboard-hero__actions {
     width: auto;
     flex-wrap: nowrap;
     justify-content: flex-end;
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 22;
+  }
+
+  .dashboard-hero__copy {
+    padding-top: 82px;
+    padding-right: 0;
   }
 
   .dashboard-stats {

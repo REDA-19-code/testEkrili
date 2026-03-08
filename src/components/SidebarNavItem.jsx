@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../styles/icons.css";
+import "../styles/SidebarNavItem.css";
 
 export function SidebarNavItem({
   icon,

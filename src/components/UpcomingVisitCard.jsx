@@ -12,7 +12,7 @@ function UpcomingVisitCard({
   visitTime = "Today - 14:30",
   avatar = "/images/photo_2026-02-11_22-49-45.jpg",
 }) {
-  const safeVisitTime = String(visitTime).replace("Â·", "-");
+  const safeVisitTime = String(visitTime).replace("·", "-");
   const safeAvatar = String(avatar || "").includes("avatar-placeholder")
     ? "/images/photo_2026-02-11_22-49-45.jpg"
     : avatar;
@@ -28,7 +28,7 @@ function UpcomingVisitCard({
             Upcoming Visit
           </h3>
         </div>
-        <span className="dashboard-panel-card__eyebrow">Today</span>
+        <span className="dashboard-panel-card__eyebrow dashboard-panel-card__eyebrow--badge">Today</span>
       </div>
 
       <div className="dashboard-panel-card__visitor">
@@ -47,12 +47,9 @@ function UpcomingVisitCard({
       </div>
 
       <div className="dashboard-panel-card__actions">
-        <button type="button" className="dashboard-panel-card__text-btn dashboard-panel-card__text-btn--success">
+        <button type="button" className="dashboard-panel-card__text-btn dashboard-panel-card__text-btn--highlight">
           <CheckCircleOutlineRoundedIcon fontSize="inherit" />
-          <span>Confirm</span>
-        </button>
-        <button type="button" className="dashboard-panel-card__outline-btn">
-          Reschedule
+          <span>View Request</span>
         </button>
       </div>
     </DashboardCardShell>

@@ -223,6 +223,30 @@ const formatDashboardDate = (dateValue) => {
   }).format(date);
 };
 
+const getIsNewValue = (value) => {
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (typeof value === "number") {
+    return value === 1;
+  }
+
+  if (typeof value === "string") {
+    const normalizedValue = value.trim().toLowerCase();
+
+    if (["true", "1", "yes", "new"].includes(normalizedValue)) {
+      return true;
+    }
+
+    if (["false", "0", "no", ""].includes(normalizedValue)) {
+      return false;
+    }
+  }
+
+  return Boolean(value);
+};
+
 function Dashboard() {
   const base = process.env.PUBLIC_URL || "";
   const { displayName, token } = useDataContext();
@@ -372,9 +396,9 @@ function Dashboard() {
           onClose={() => setIsSidebarOpen(false)}
         />
 
-        <div className="dashboard-main">
+        <div className={["dashboard-main", isSidebarOpen ? "dashboard-main--sidebar-open" : ""].filter(Boolean).join(" ")}>
           <header className="dashboard-hero">
-            <div>
+            <div className="dashboard-hero__copy">
               <button
                 type="button"
                 className="dashboard-mobile-nav-btn"
@@ -383,9 +407,12 @@ function Dashboard() {
               >
                 <MenuRoundedIcon fontSize="inherit" />
               </button>
-              <h1 className="dashboard-hero__title">Welcome back, {userName} 👋</h1>
+              <span className="dashboard-hero__eyebrow">Overview</span>
+              <h1 className="dashboard-hero__title">
+                Welcome back, {userName} {"\u{1F44B}"}
+              </h1>
               <p className="dashboard-hero__subtitle">
-                Here&apos;s what&apos;s happening with your properties.
+                Here&apos;s a quick snapshot of your listings, visits, and current activity.
               </p>
             </div>
 
@@ -432,7 +459,7 @@ function Dashboard() {
                 price={property.price || property.rent || "--"}
                 views={property.views || property.viewCount || "0"}
                 leads={property.leads || property.leadsCount || 0}
-                isNew={Boolean(property.isNew)}
+                isNew={getIsNewValue(property.isNew)}
               />
             ))}
           </PropertiesInventorySection>

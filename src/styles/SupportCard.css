@@ -42,7 +42,7 @@
   border: 0;
   border-radius: 999px;
   background: #ffffff;
-  color: #7c46f2;
+  color: #6f63cb;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -54,9 +54,9 @@
 .support-box__button:hover,
 .support-box__button:focus-visible {
   transform: translateY(-1px);
-  background: #faf7ff;
-  color: #7239ed;
-  box-shadow: 0 12px 22px rgba(124, 70, 242, 0.16);
+  background: #f7f5fd;
+  color: #675dbc;
+  box-shadow: 0 12px 22px rgba(114, 104, 201, 0.14);
 }
 
 .support-box--compact {

@@ -1,5 +1,5 @@
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
-import "../styles/support-box.css";
+import "../styles/SupportCard.css";
 
 function SupportCard({
   title = "Need assistance?",

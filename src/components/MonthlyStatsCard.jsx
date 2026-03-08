@@ -30,8 +30,14 @@ function MonthlyStatsCard({ items = DEFAULT_ITEMS }) {
           <span className="dashboard-panel-card__mini-icon" aria-hidden="true">
             <ShowChartOutlinedIcon fontSize="inherit" />
           </span>
-          <h3 className="dashboard-panel-card__title">This Month</h3>
+          <div className="dashboard-panel-card__heading-copy">
+            <span className="dashboard-panel-card__heading-label">Insights</span>
+            <h3 className="dashboard-panel-card__title">This Month</h3>
+          </div>
         </div>
+        <span className="dashboard-panel-card__eyebrow dashboard-panel-card__eyebrow--badge">
+          Live
+        </span>
       </div>
 
       <div className="dashboard-panel-card__stat-list">

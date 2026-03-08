@@ -1,4 +1,4 @@
-import "../styles/footer.css";
+import "../styles/FooterSection.css";
 
 function FooterSection() {
   return (
@@ -10,17 +10,22 @@ function FooterSection() {
               <span className="site-footer__logo-mark" aria-hidden="true">E</span>
               <strong className="site-footer__brand-name">Ekrili</strong>
             </div>
+            <p className="site-footer__eyebrow">Property Operations Platform</p>
             <p className="site-footer__description">
-              A smart owner dashboard for managing listings, visit requests, tenant
-              activity, and property insights in one place.
+              A quieter workspace for listings, tenant coordination, visit requests,
+              and property insights without the operational clutter.
             </p>
+            <div className="site-footer__status">
+              <span className="site-footer__status-dot" aria-hidden="true" />
+              <span>Dashboard systems operational</span>
+            </div>
           </div>
 
           <nav className="site-footer__links" aria-label="Platform">
             <h3 className="site-footer__heading site-footer__heading--nav">Platform</h3>
-            <a href="/" className="site-footer__link">Pricing</a>
-            <a href="/" className="site-footer__link">Integrations</a>
-            <a href="/" className="site-footer__link">Listing Guide</a>
+            <a href="/" className="site-footer__link">Overview</a>
+            <a href="/" className="site-footer__link">Listings</a>
+            <a href="/" className="site-footer__link">Visit Requests</a>
           </nav>
 
           <nav className="site-footer__links site-footer__links--governance" aria-label="Governance">
@@ -31,16 +36,19 @@ function FooterSection() {
           </nav>
 
           <div className="site-footer__subscribe">
-            <h3 className="site-footer__subscribe-title">Join Our Owner Community</h3>
+            <h3 className="site-footer__subscribe-title">Get product updates</h3>
+            <p className="site-footer__subscribe-copy">
+              Monthly notes about features, release updates, and owner tools.
+            </p>
             <form className="site-footer__subscribe-form">
               <input
                 type="email"
                 className="site-footer__input"
-                placeholder="email@example.com"
+                placeholder="Enter your email"
                 aria-label="Email address"
               />
               <button type="submit" className="site-footer__button">
-                Subscribe
+                Join
               </button>
             </form>
           </div>
@@ -48,7 +56,7 @@ function FooterSection() {
 
         <div className="site-footer__bottom">
           <p className="site-footer__copyright">
-            (C) 2026 EKRILI TECHNOLOGIES INC. ALL RIGHTS RESERVED.
+            Copyright 2026 Ekrili Technologies. All rights reserved.
           </p>
           <div className="site-footer__socials">
             <a href="https://www.facebook.com/raouf.zaid.50/" className="site-footer__social" target="_blank" rel="noreferrer">Facebook</a>

@@ -1,12 +1,13 @@
 .sidebar-menu {
-  width: 236px;
-  min-width: 236px;
+  width: 252px;
+  min-width: 252px;
   position: sticky;
   top: 14px;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
+  padding-bottom: 10px;
 }
 
 .sidebar-menu__close-btn {
@@ -14,32 +15,47 @@
 }
 
 .sidebar-menu__panel {
-  padding: 18px 12px 16px;
-  background: #ffffff;
+  padding: 16px 12px 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #fcfbfe 100%);
   border: 1px solid #ebe5f2;
   border-radius: 28px;
   box-shadow: 0 14px 32px rgba(102, 82, 140, 0.06);
 }
 
+.sidebar-menu__section-label {
+  padding: 0 8px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8c8599;
+}
+
 .sidebar-menu__items {
   display: grid;
-  gap: 10px;
+  gap: 8px;
+}
+
+.sidebar-menu__footer {
+  display: grid;
+  gap: 12px;
 }
 
 .sidebar-menu__support {
   background: linear-gradient(180deg, #ebe4f1 0%, #e7dfef 100%);
   box-shadow: none;
+  border: 1px solid #e4ddec;
 }
 
 .sidebar-menu__item {
   --card-gap: 12px;
-  --card-min-height: 42px;
+  --card-min-height: 44px;
   --card-padding-x: 14px;
-  --card-radius: 16px;
+  --card-radius: 18px;
   --icon-size: 17px;
   --text-size: 14px;
   --icon-base-color: #736f7c;
-  --icon-hover-bg: #ece7f5;
+  --icon-hover-bg: #f2eef8;
   font-weight: 600;
 }
 
@@ -47,7 +63,7 @@
   min-width: 18px;
   height: 18px;
   font-size: 9px;
-  background: #7c46f2;
+  background: #7268c9;
   color: #ffffff;
   border: 0;
   box-shadow: none;
@@ -55,14 +71,18 @@
 
 .sidebar-menu__sign-out {
   --icon-base-color: #e05a5a;
-  --icon-hover-bg: transparent;
+  --icon-hover-bg: #fff5f5;
   --card-padding-x: 16px;
-  margin-top: 2px;
+  min-height: 46px;
+  background: #ffffff;
+  border: 1px solid #f0dede;
+  border-radius: 20px;
+  box-shadow: 0 10px 22px rgba(208, 75, 75, 0.06);
 }
 
 .sidebar-menu__sign-out:hover {
   color: #d24b4b;
-  background: transparent;
+  background: #fff7f7;
 }
 
 .sidebar-menu__sign-out .icon-card__text {
@@ -81,7 +101,7 @@
     width: min(84vw, 320px);
     min-width: 0;
     height: 100vh;
-    padding: 16px;
+    padding: 16px 14px 18px;
     overflow-y: auto;
     background: #f8f7fb;
     box-sizing: border-box;
@@ -98,6 +118,7 @@
     width: 38px;
     height: 38px;
     margin-left: auto;
+    margin-bottom: 2px;
     border: 0;
     border-radius: 12px;
     display: inline-grid;
@@ -111,5 +132,9 @@
 
   .sidebar-menu__panel {
     border-radius: 24px;
+  }
+
+  .sidebar-menu__footer {
+    padding-bottom: 8px;
   }
 }
