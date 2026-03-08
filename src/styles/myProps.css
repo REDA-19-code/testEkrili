@@ -1,0 +1,361 @@
+.myprops-actions {
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.myprops-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sort-menu {
+  position: relative;
+}
+
+.icons-view {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #dbcdfc;
+  background: #f8f4ff;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #7a46f2;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.sort-btn {
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #dbcdfc;
+  background: #f8f4ff;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #6d3fd3;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sort-menu__panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 150px;
+  background: #fff;
+  border: 1px solid #dbcdfc;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(27, 20, 45, 0.12);
+  z-index: 30;
+  padding: 6px;
+}
+
+.sort-menu__item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  border-radius: 8px;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.sort-menu__item:hover {
+  background: #f3ecff;
+  color: #6d3fd3;
+}
+
+.Add-new-prop {
+  height: 44px;
+  padding: 0 22px;
+  border: 1px solid #8f44fd;
+  background: linear-gradient(135deg, #9b57ff 0%, #7a46f2 100%);
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.icons-view:hover,
+.sort-btn:hover {
+  border-color: #c8b2fa;
+  background: #f3ecff;
+}
+
+.Add-new-prop:hover {
+  border-color: #7a46f2;
+  background: linear-gradient(135deg, #8f44fd 0%, #6d3fd3 100%);
+}
+
+.dashboard-property-cards {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.dashboard-property-card {
+  background: #fff;
+  border: 1px solid #eceef2;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.05);
+  border-color: #0b0f1928;
+}
+
+.dashboard-property-card__media-wrap {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.dashboard-property-card__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dashboard-property-card__status {
+
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(17, 24, 39, 0.85);
+  color: #fff;
+}
+
+.dashboard-property-card__status--active {
+  background: rgba(22, 163, 74, 0.74);
+}
+
+.dashboard-property-card__status--pending {
+  background: rgba(245, 158, 11, 0.9);
+}
+
+.dashboard-property-card__status--rented {
+  background: rgba(55, 65, 81, 0.9);
+}
+
+.dashboard-property-card__more-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111827;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.dashboard-property-card__views-pill {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.521);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dashboard-property-card__body {
+  padding: 16px 16px 14px;
+}
+
+.dashboard-property-card__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.25;
+  color: #101828;
+}
+
+.dashboard-property-card__location {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.dashboard-property-card__price-row {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dashboard-property-card__price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0b0f19;
+}
+
+.dashboard-property-card__meta-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #7932e4;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dashboard-property-card__meta-inline span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dashboard-property-card__stats {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid #edeff3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #8e44fd2c;
+}
+
+.dashboard-property-card__stats > div {
+  padding: 10px 8px;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  color: #0f172a;
+}
+
+.dashboard-property-card__stats > div + div {
+  border-left: 1px solid #e6e8ed;
+}
+
+.dashboard-property-card__stats strong {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.dashboard-property-card__stats small {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.dashboard-property-card__footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #8e44fd42;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dashboard-property-card__footer span {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.dashboard-property-card__actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.dashboard-property-card__btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dashboard-property-card__btn--ghost {
+  border: 1px solid #8b42f8;
+  background: #fff;
+  color: #8b42f8;
+}
+
+.dashboard-property-card__btn--dark {
+  border: 1px solid #8b42f8;
+  background: #8b42f8;
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-property-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .myprops-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .myprops-toolbar {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .Add-new-prop {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-property-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-property-card__title {
+    font-size: 21px;
+  }
+
+  .dashboard-property-card__price {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 900px) {
+  .myprops-actions {
+    position: static !important;
+    width: 100%;
+    margin-top: 10px;
+    align-items: flex-end;
+  }
+
+  .myprops-toolbar {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}

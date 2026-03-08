@@ -1,6 +1,6 @@
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import SidebarNavItem from "./SidebarNavItem";
-import { DASHBOARD_PATH } from "./routes";
+import { DASHBOARD_PATH, MY_PROPERTIES_PATH } from "./routes";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -38,6 +38,7 @@ const buildTopItems = (badges = {}) => [
   {
     icon: ApartmentOutlinedIcon,
     text: "My Properties",
+    link: MY_PROPERTIES_PATH,
   },
   {
     icon: AddCircleOutlineRoundedIcon,
