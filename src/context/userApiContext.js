@@ -8,7 +8,7 @@ const MyContext = createContext();
 // 2. إنشاء Provider
 export const LoginProvider = ({ children }) => {
   //-----
-  const {saveToken,token}=useDataContext()
+  const {saveToken, saveDisplayName, saveUserRole, saveUserAvatar, token}=useDataContext()
   //----
 
   //login api
@@ -29,6 +29,25 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
     console.log("Login Success:", response.data);
     navigate("/")
     saveToken(response.data.token)
+    saveDisplayName(response.data?.name || response.data?.user?.name || userNameLogin)
+    saveUserRole(
+      response.data?.role ||
+      response.data?.user?.role ||
+      response.data?.userType ||
+      response.data?.user?.userType ||
+      response.data?.accountType ||
+      response.data?.user?.accountType ||
+      ""
+    )
+    saveUserAvatar(
+      response.data?.profileImage ||
+      response.data?.user?.profileImage ||
+      response.data?.avatar ||
+      response.data?.user?.avatar ||
+      response.data?.image ||
+      response.data?.user?.image ||
+      ""
+    )
 
   } catch (error) {
     console.error("Login Failed:", error.response?.data || error.message);
@@ -56,6 +75,25 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
 
     console.log("creat accont Success:", response.data);
         saveToken(response.data.token)
+        saveDisplayName(response.data?.name || response.data?.user?.name || nameRegister || userNameRegister)
+        saveUserRole(
+          response.data?.role ||
+          response.data?.user?.role ||
+          response.data?.userType ||
+          response.data?.user?.userType ||
+          response.data?.accountType ||
+          response.data?.user?.accountType ||
+          ""
+        )
+        saveUserAvatar(
+          response.data?.profileImage ||
+          response.data?.user?.profileImage ||
+          response.data?.avatar ||
+          response.data?.user?.avatar ||
+          response.data?.image ||
+          response.data?.user?.image ||
+          ""
+        )
         navigate("/register/next/uplaod")
 
   } catch (error) {
@@ -68,8 +106,8 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
 
 //update api 
   const [profileImage,setProfileImage]=useState(null)
-  const [userName,setUserName]=useState(null)
-  const [name,setName]=useState(null)
+  const [userName]=useState(null)
+  const [name]=useState(null)
   const handelUpdate=async()=>{
     setIsLaoding(true)
   try {
@@ -90,6 +128,25 @@ const handeLogin = async (userNameLogin, passwordLogin) => {
 
 console.log("update account Success:", response.data);
 saveToken(response.data.token);
+saveDisplayName(response.data?.name || response.data?.user?.name || name || userName || "");
+saveUserRole(
+  response.data?.role ||
+  response.data?.user?.role ||
+  response.data?.userType ||
+  response.data?.user?.userType ||
+  response.data?.accountType ||
+  response.data?.user?.accountType ||
+  ""
+);
+saveUserAvatar(
+  response.data?.profileImage ||
+  response.data?.user?.profileImage ||
+  response.data?.avatar ||
+  response.data?.user?.avatar ||
+  response.data?.image ||
+  response.data?.user?.image ||
+  ""
+);
 
         navigate("/")
 

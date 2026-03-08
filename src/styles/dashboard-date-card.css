@@ -1,0 +1,40 @@
+.dashboard-date-card {
+  width: fit-content;
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #ece7f2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 14px rgba(41, 31, 63, 0.06);
+}
+
+.dashboard-date-card__icon {
+  display: inline-grid;
+  place-items: center;
+  color: #7c46f2;
+  font-size: 20px;
+  flex: 0 0 auto;
+}
+
+.dashboard-date-card__value {
+  color: #211d29;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .dashboard-date-card {
+    width: fit-content;
+    min-width: 0;
+    min-height: 46px;
+    padding: 0 14px;
+  }
+
+  .dashboard-date-card__value {
+    font-size: 13px;
+  }
+}

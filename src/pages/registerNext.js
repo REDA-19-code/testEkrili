@@ -1,14 +1,12 @@
 import { useState } from "react";
 import TextComponent from "../components/TextComponents";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Back from "../components/backPage";
 import { useLoginContext } from "../context/userApiContext";
 
 export default function RegisterNext ({hidden}) {
         const isMobile = useMediaQuery("(max-width: 720px)");
-        const navigate=useNavigate()
     const [password,setPassword]=useState('')
     const {setPasswordRegister,passwordRegister,isLaoding,handeLRegister}=useLoginContext();
     return (
@@ -53,7 +51,7 @@ export default function RegisterNext ({hidden}) {
                 marginTop:'30px'
             }}
             >
-                {isLaoding?<div class="loader"></div>:'Sign up'}
+                {isLaoding?<div className="loader"></div>:'Sign up'}
             </Button>
             
             </div>

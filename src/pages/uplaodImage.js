@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Back from "../components/backPage";
 import { useLoginContext } from "../context/userApiContext";

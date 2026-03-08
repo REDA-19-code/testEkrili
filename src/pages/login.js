@@ -46,7 +46,7 @@ export default function Login ({hidden}) {
   }}
   onClick={() => handeLogin(userNameLogin, passwordLogin)} // ✅ تمرير القيم
 >
-  {isLaoding?<div class="loader"></div>:'login'}
+  {isLaoding?<div className="loader"></div>:'login'}
 </Button>
 
             <p>Don't have an account?<span style={{fontWeight:'700',cursor:'pointer'}} onClick={()=>{navigate('/register')}} > Sign up</span></p>
