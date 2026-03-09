@@ -17,6 +17,10 @@ import VerifyPage from "./pages/verify";
 import Forget from "./pages/forgetPassword";
 import UpdatePassword from "./pages/updatePassword";
 import VerifyRestPassword from "./pages/verifyRestPassword";
+ import MyProperties from "./pages/myProps";
+ 
+
+
 function App() {
     const location = useLocation();
     const isLogin=location.pathname.startsWith("/login")||location.pathname.startsWith("/register")||location.pathname.startsWith("/verify")||location.pathname.startsWith("/rest")
@@ -39,6 +43,9 @@ function App() {
           </PageWrapper>} />
           <Route path="/dashboard" element={<PageWrapper>
             <Dashboard />
+          </PageWrapper>} />
+          <Route path="/my-properties" element={<PageWrapper>
+            <MyProperties />
           </PageWrapper>} />
           <Route path="/" element={<PageWrapper>
             <Home />

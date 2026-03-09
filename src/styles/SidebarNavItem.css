@@ -1,0 +1,104 @@
+.icon-card {
+  --icon-base-color: #74707d;
+  --icon-hover-bg: #eee8f7;
+  --icon-active-bg: linear-gradient(135deg, #7f72d8 0%, #7268c9 100%);
+  --icon-active-color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: var(--card-gap, 10px);
+  width: var(--card-width, fit-content);
+  min-height: var(--card-min-height, 34px);
+  padding: 0 var(--card-padding-x, 10px);
+  border: 0;
+  border-radius: var(--card-radius, 12px);
+  background: transparent;
+  color: var(--icon-base-color);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.18s ease;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.icon-card[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.78;
+}
+
+.icon-card--full {
+  width: 100%;
+}
+
+.icon-card__icon {
+  display: grid;
+  place-items: center;
+  font-size: var(--icon-size, 16px);
+  color: inherit;
+  flex: 0 0 auto;
+}
+
+.icon-card__text {
+  font-size: var(--text-size, 12px);
+  font-weight: 600;
+  line-height: 1.2;
+  flex: 1 1 auto;
+}
+
+.icon-card:hover {
+  background: var(--icon-hover-bg);
+  color: #5b5665;
+}
+
+.icon-card[aria-disabled="true"]:hover {
+  background: transparent;
+  color: var(--icon-base-color);
+  transform: none;
+}
+
+.icon-card.is-active {
+  background: var(--icon-active-bg);
+  color: var(--icon-active-color);
+  box-shadow: 0 12px 24px rgba(114, 104, 201, 0.2);
+}
+
+.icon-card.is-active:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.icon-card__badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  background: #efe7ff;
+  color: #6f63cb;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  flex: 0 0 auto;
+  border: 1px solid #e3d6ff;
+  box-shadow: 0 6px 14px rgba(114, 104, 201, 0.1);
+}
+
+.icon-card--danger {
+  --icon-base-color: #d24747;
+  --icon-hover-bg: #fff1f1;
+  --icon-active-bg: #fff1f1;
+  --icon-active-color: #c63d3d;
+}
+
+.icon-card--danger:hover {
+  background: var(--icon-hover-bg);
+  color: var(--icon-base-color);
+}
+
+.icon-card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

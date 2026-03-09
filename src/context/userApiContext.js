@@ -122,12 +122,11 @@ setIsLaoding(true)
     navigate('/rest/confirm')
     setEmailVerify(forgetEmail)
 }catch (error) {
-console.error( error.response?.data || error.message);
+console.error( error.response?.data||  error.message);
 }finally{
     setIsLaoding(false)
   }
 }
-
 //confirm code 
 const [tokenPassword,setTokenPassword]=useState('')
 const handelConfirmPassword=async()=>{
@@ -142,7 +141,7 @@ const handelConfirmPassword=async()=>{
     setTokenPassword(response.data.token)
     navigate('/rest/password')
 }catch (error) {
-console.error( error.response?.data || error.message);
+console.error( error.response?.data||  error.message);
 }finally{
     setIsLaoding(false)
   }
