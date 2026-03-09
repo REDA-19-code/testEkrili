@@ -87,17 +87,21 @@ const [emailVerify,setEmailVerify]=useState('')
 
 const handelVerify=async ()=>{
   const finalCode = code.join("");
+  setIsLaoding(true)
   try {
     const response = await axios.post(`${apiUrl}/user/verify`, {
       email:emailVerify,
       code:finalCode
     });
     console.log(response.data)
+    saveToken(response.data.token)
     navigate('/')
 
 }catch (error) {
 console.error( error.response?.data || error.message);
-}
+}finally{
+    setIsLaoding(false)
+  }
 }
 
 const handelSendCode=async()=>{
@@ -106,6 +110,89 @@ const handelSendCode=async()=>{
     });
     console.log(response.data)
 }
+// forget password
+const [forgetEmail,setForgetEmail]=useState('')
+const handelForgetPassword=async()=>{
+setIsLaoding(true)
+    try {
+    const response = await axios.post(`${apiUrl}/user/forget`, {
+      email:forgetEmail,
+    });
+    console.log(response.data)
+    navigate('/rest/confirm')
+    setEmailVerify(forgetEmail)
+}catch (error) {
+console.error( error.response?.data || error.message);
+}finally{
+    setIsLaoding(false)
+  }
+}
+
+//confirm code 
+const [tokenPassword,setTokenPassword]=useState('')
+const handelConfirmPassword=async()=>{
+      setIsLaoding(true)
+    try {
+      const finalCode = code.join("");
+    const response = await axios.post(`${apiUrl}/user/confirm`, {
+      email:forgetEmail,
+      code:finalCode
+    });
+    console.log(response.data)
+    setTokenPassword(response.data.token)
+    navigate('/rest/password')
+}catch (error) {
+console.error( error.response?.data || error.message);
+}finally{
+    setIsLaoding(false)
+  }
+}
+
+
+//updatePassword
+const [updatePassword,setUpdatePassword]=useState('')
+
+const handelUpdatePassword = async () => {
+      setIsLaoding(true)
+  try {
+
+
+    const response = await axios.put(
+      `${apiUrl}/user/password`,
+      {
+        newPassword: updatePassword,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenPassword}`,
+        },
+      }
+    );
+
+    console.log(response.data);
+    setUserNameLogin(forgetEmail)
+    setPasswordLogin(updatePassword)
+    navigate("/login");
+
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+  }finally{
+    setIsLaoding(false)
+  }
+};
+
+
+useEffect(() => {
+  const isReload =
+    window.performance.getEntriesByType("navigation")[0]?.type === "reload";
+
+  if (isReload && location.pathname.startsWith("/rest")) {
+    navigate("/login", { replace: true });
+  }
+  if (isReload && location.pathname.startsWith("/verify")) {
+    navigate("/register", { replace: true });
+  }
+}, []);
 
   const value = {
     handelVerify,
@@ -132,7 +219,14 @@ const handelSendCode=async()=>{
     isOwner,
     setIsOwner,
     errer,
-    emailVerify
+    emailVerify,
+    setForgetEmail,
+    forgetEmail,
+    handelForgetPassword,
+    handelConfirmPassword,
+    setUpdatePassword,
+    updatePassword,
+    handelUpdatePassword
 
     };
 

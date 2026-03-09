@@ -82,13 +82,22 @@ export  function ShieldIcon({ size = 72 }) {
 }
 
 
-export default function VerifyPage() {
-    const {code,setCode,emailVerify,handelSendCode,handelVerify,isLaoding}=useLoginContext()
+export default function VerifyRestPassword() {
+    const {code,setCode,emailVerify,handelForgetPassword,handelConfirmPassword}=useLoginContext()
+
+  const location=useLocation()
   const navigate=useNavigate()
   const isMobile = useMediaQuery("(max-width: 720px)");
   const {colors}=useTheme()
+const prevPath = location.state?.from;
 
-
+const handleNavigate = () => {
+  if (prevPath && prevPath.startsWith("/rest")) {
+    navigate("/rest/password");
+  } else {
+    navigate("/");
+  }
+};
 
 
   return (
@@ -154,11 +163,11 @@ complete your registration.</p>
         </div>
 
         <TextVerify values={code} setValues={setCode} />
-        <TimerResend onResend={handelSendCode} initialSeconds={10} />
+        <TimerResend onResend={handelForgetPassword} initialSeconds={10} />
         <Button
-        onClick={handelVerify}
+        onClick={handelConfirmPassword}
          sx={{color:'white',background:colors.primary,width:'100%',fontSize:'17px',fontWeight:'500',borderRadius:'15px'}} >
-          {isLaoding?<div class="loader"></div>:'verify email'}
+          verify email 
         </Button>
         <p className="separeOR" >OR</p>
         <p

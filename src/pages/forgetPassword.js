@@ -37,11 +37,10 @@ export function ShieldIcon({ size = 72, color = "#7c3aed" }) {
 
 
 export default function Forget ({hidden}) {
-    const location=useLocation()
     const {colors}=useTheme()
     const isMobile = useMediaQuery("(max-width: 720px)");
     const navigate=useNavigate()
-    const {handeLogin,userNameLogin,setUserNameLogin,passwordLogin,setPasswordLogin,isLaoding}=useLoginContext()
+    const {forgetEmail,setForgetEmail,isLaoding,handelForgetPassword}=useLoginContext()
     return (
         <div 
         style={{
@@ -78,7 +77,7 @@ export default function Forget ({hidden}) {
                 }} >Enter your email and we'll send you a reset link
 to regain access to your account.</p>
             </div>
-            <TextComponent label={'email'} placeholder={'Enter your email here'} width={'100%'} value={userNameLogin} setValue={setUserNameLogin} />
+            <TextComponent label={'email'} placeholder={'Enter your email here'} width={'100%'} value={forgetEmail} setValue={setForgetEmail} />
      <Button 
      
   variant="contained"
@@ -90,7 +89,7 @@ to regain access to your account.</p>
     height:'40px',
     width:'100%'
   }}
-  onClick={() => navigate("/rest/confirm", { state: { from: location.pathname } })} // ✅ تمرير القيم
+  onClick={handelForgetPassword} // ✅ تمرير القيم
 >
   {isLaoding?<div class="loader"></div>:'send email'}
 </Button>
@@ -109,7 +108,7 @@ to regain access to your account.</p>
   }}
   onClick={() => navigate('/login')}
 >
-  {isLaoding ? <div className="loader"></div> : "Back to login"}
+  { "Back to login"}
 </Button>
             </div>
         </div>

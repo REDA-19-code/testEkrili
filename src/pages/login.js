@@ -51,7 +51,16 @@ export default function Login ({hidden}) {
 
 
             <div style={{position:'relative',width:'100%',marginTop:'10px'}} >
-                <p style={{position:'absolute',top:'0',right:'0',fontWeight:'700',color:colors.primary}}>forget password?</p>
+                <p 
+                style={{position:'absolute',
+                top:'0',
+                right:'0',
+                fontWeight:'700',
+                color:colors.primary,
+                cursor:'pointer'
+            }}
+                onClick={()=>{navigate("/rest/forget")}}
+                >forget password?</p>
                 <TextComponent
                 label={errer.type==='password'?errer.message:'password'}
                 placeholder="Enter your password"

@@ -16,6 +16,7 @@ import { ThemeProvider } from "./context/themeContext";
 import VerifyPage from "./pages/verify";
 import Forget from "./pages/forgetPassword";
 import UpdatePassword from "./pages/updatePassword";
+import VerifyRestPassword from "./pages/verifyRestPassword";
 function App() {
     const location = useLocation();
     const isLogin=location.pathname.startsWith("/login")||location.pathname.startsWith("/register")||location.pathname.startsWith("/verify")||location.pathname.startsWith("/rest")
@@ -55,7 +56,7 @@ function App() {
           <Forget/>
           </PageWrapper>} />
           <Route path="/rest/confirm" element={<PageWrapper>
-          <VerifyPage/>
+          <VerifyRestPassword/>
           </PageWrapper>} />
            <Route path="/rest/password" element={<PageWrapper>
           <UpdatePassword/>

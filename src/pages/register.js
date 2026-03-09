@@ -8,6 +8,7 @@ import ChickType from "../components/chickType";
 import SecurityScore from "../components/SecurityScore";
 import { passwordValidation } from "../utils/passwordValidation";
 import { useTheme } from "../context/themeContext";
+import {ConditionPassword} from '../components/conditionPassword'
 
 
 export default function Register ({hidden}) {
@@ -28,7 +29,8 @@ export default function Register ({hidden}) {
     passwordRegister,
     setPasswordRegister,
     handeLRegister,
-    errer
+    errer,
+    isLaoding
     }=useLoginContext()
     return (
         <div 
@@ -71,8 +73,9 @@ export default function Register ({hidden}) {
              <div style={{width:'100%',}}>
                  <p style={{width:'100%',fontSize:'12px',fontWeight:'500',color:'gray'}} >Use 8+ chars with letters, numbers, and symbols.</p>
                 <SecurityScore score={passwordValidation(passwordRegister)} />
-               
-            
+             </div>
+             <div style={{width:'100%'}}>
+                <ConditionPassword password={passwordRegister} />
              </div>
             <TextComponent label={'Confirm Password'} placeholder={'Repeat your password'} width={'100%'} value={passwordRegister} setValue={setPasswordRegister} isPassword={true} />
 
@@ -88,7 +91,9 @@ export default function Register ({hidden}) {
                 width:'100%'
             }}
             onClick={handeLRegister}
-            >Next</Button>
+            >
+                {isLaoding?<div class="loader"></div>:'create account'}
+            </Button>
             <p>Already have accont?<span style={{fontWeight:'700',cursor:'pointer',color:colors.primary}}  onClick={()=>{navigate('/login')}} > Login</span></p>
             <p className="separeOR" >OR</p>
 <div

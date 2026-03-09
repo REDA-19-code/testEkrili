@@ -3,21 +3,21 @@ import { Button, colors } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useLoginContext } from "../context/userApiContext";
-import { isValidAlgerianPhone } from "../utils/phonValidation";
-import ChickType from "../components/chickType";
 import SecurityScore from "../components/SecurityScore";
 import { passwordValidation } from "../utils/passwordValidation";
 import { useTheme } from "../context/themeContext";
-
+import {ConditionPassword} from '../components/conditionPassword'
 
 export default function UpdatePassword ({hidden}) {
         const {colors}=useTheme()
         const isMobile = useMediaQuery("(max-width: 720px)");
         const navigate=useNavigate()
     const {
-    passwordRegister,
-    setPasswordRegister,
-    handeLRegister
+    handelUpdatePassword,
+    updatePassword,
+    setUpdatePassword,
+    isLaoding
+    
     }=useLoginContext()
     return (
         <div 
@@ -45,13 +45,15 @@ export default function UpdatePassword ({hidden}) {
             gap:"10px",
              }}
             >
-            <h1 style={{marginTop:'20%',marginBottom:'20px',fontWeight:'600'}} >Create new passwor🔒</h1>
-             <TextComponent label={'Password'} placeholder={'Enter your Password here'} width={'100%'} value={passwordRegister} setValue={setPasswordRegister} isPassword={true} />
-            <TextComponent label={'Confirm Password'} placeholder={'Repeat your password'} width={'100%'} value={passwordRegister} setValue={setPasswordRegister} isPassword={true} />
+            <h1 style={{marginTop:'20%',marginBottom:'20px',fontWeight:'600'}} >Create new password🔒</h1>
+             <TextComponent label={'Password'} placeholder={'Enter your Password here'} width={'100%'} value={updatePassword} setValue={setUpdatePassword} isPassword={true} />
+            <TextComponent label={'Confirm Password'} placeholder={'Repeat your password'} width={'100%'} value={updatePassword} setValue={setUpdatePassword} isPassword={true} />
             <div style={{width:'100%',}}>
                  <p style={{width:'100%',fontSize:'12px',fontWeight:'500',color:'gray'}} >Use 8+ chars with letters, numbers, and symbols.</p>
-                <SecurityScore score={passwordValidation(passwordRegister)} />
-
+                <SecurityScore score={passwordValidation(updatePassword)} />
+             </div>
+             <div style={{width:'100%'}} >
+                <ConditionPassword password={updatePassword} />
              </div>
 
 
@@ -64,8 +66,8 @@ export default function UpdatePassword ({hidden}) {
                 marginTop:'30px',
                 width:'100%'
             }}
-            onClick={handeLRegister}
-            >Update Password</Button>
+            onClick={handelUpdatePassword}
+            >{isLaoding?<div class="loader"></div>:'Update Password'}</Button>
             <p style={{color:colors.textSecondary,fontWeight:'500',fontSize:'18px'}} >uddenly remembered?<span style={{fontWeight:'700',cursor:'pointer',color:colors.primary}}  onClick={()=>{navigate('/login')}} > Sign In instead</span></p>
             </div>
         </div>
