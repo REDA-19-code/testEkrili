@@ -9,7 +9,6 @@ import StatsSummaryCard from "../components/StatsSummaryCard";
 import PropertyRowCard from "../components/PropertyRowCard";
 import NavigationSidebar from "../components/NavigationSidebar";
 import PropertiesInventorySection from "../components/PropertiesInventorySection";
-import CurrentDateCard from "../components/CurrentDateCard";
 import UpcomingVisitCard from "../components/UpcomingVisitCard";
 import MonthlyStatsCard from "../components/MonthlyStatsCard";
 import QuickActionsCard from "../components/QuickActionsCard";
@@ -181,6 +180,7 @@ const FALLBACK_PROPERTIES = [
     views: "1.2k",
     leads: 24,
     isNew: true,
+    addedAt: "Added 2 days ago",
     tenantName: "Sarah Jenkins",
     tenantRole: "Verified Tenant",
     visitTime: "Today - 14:30",
@@ -195,6 +195,7 @@ const FALLBACK_PROPERTIES = [
     views: "850",
     leads: 12,
     isNew: true,
+    addedAt: "Added 1 week ago",
   },
   {
     id: "property-3",
@@ -206,22 +207,9 @@ const FALLBACK_PROPERTIES = [
     views: "640",
     leads: 8,
     isNew: false,
+    addedAt: "Added 3 weeks ago",
   },
 ];
-
-const formatDashboardDate = (dateValue) => {
-  const date = new Date(dateValue);
-
-  if (Number.isNaN(date.getTime())) {
-    return "Today";
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(date);
-};
 
 const getIsNewValue = (value) => {
   if (typeof value === "boolean") {
@@ -254,7 +242,6 @@ function Dashboard() {
   const [stats, setStats] = useState([]);
   const [properties, setProperties] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const currentDateLabel = formatDashboardDate(new Date());
 
   const statsMap = stats.reduce((accumulator, stat) => {
     const key = stat.id || stat.key || stat.iconKey;
@@ -416,9 +403,7 @@ function Dashboard() {
               </p>
             </div>
 
-            <div className="dashboard-hero__actions">
-              <CurrentDateCard value={currentDateLabel} />
-            </div>
+            <div className="dashboard-hero__actions" />
           </header>
 
           <section className="dashboard-stats" aria-label="Dashboard stats">
@@ -444,7 +429,7 @@ function Dashboard() {
             <QuickActionsCard />
           </section>
 
-          <PropertiesInventorySection>
+          <PropertiesInventorySection hideActions>
             {propertiesToRender.map((property, index) => (
               <PropertyRowCard
                 key={property.id || property._id || index}
@@ -455,11 +440,13 @@ function Dashboard() {
                 }
                 title={property.title || property.name || "Untitled Property"}
                 location={property.location || property.address || "Unknown location"}
+                addedAt={property.addedAt || property.createdAt || property.listedAt || ""}
                 status={property.status || "Active"}
                 price={property.price || property.rent || "--"}
                 views={property.views || property.viewCount || "0"}
                 leads={property.leads || property.leadsCount || 0}
                 isNew={getIsNewValue(property.isNew)}
+                showActions={false}
               />
             ))}
           </PropertiesInventorySection>

@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import "../styles/PropertiesInventorySection.css";
 
-function PropertiesInventorySection({ children }) {
+function PropertiesInventorySection({ children, hideActions = false }) {
   const listingCount = Children.count(children);
+  const hasListings = listingCount > 0;
 
   return (
     <section className="my-properties" id="my-properties" aria-label="Property listings">
@@ -23,23 +24,39 @@ function PropertiesInventorySection({ children }) {
             </p>
           </div>
 
-          <Link to="#" className="my-properties__view-all">
+          <Link to="/my-properties" className="my-properties__view-all">
             <span>Manage All Listings</span>
             <ArrowOutwardRoundedIcon fontSize="inherit" />
           </Link>
         </header>
 
-        <div className="my-properties__table-head" role="row">
-          <span>Property</span>
-          <span>Status</span>
-          <span>Price</span>
-          <span>Views</span>
-          <span>Leads</span>
-          <span className="my-properties__actions-head">Actions</span>
-        </div>
+        {hasListings ? (
+          <div
+            className={["my-properties__table-head", hideActions ? "my-properties__table-head--no-actions" : ""]
+              .filter(Boolean)
+              .join(" ")}
+            role="row"
+          >
+            <span>Property</span>
+            <span>Status</span>
+            <span>Price</span>
+            <span>Views</span>
+            <span>Leads</span>
+            {hideActions ? null : <span className="my-properties__actions-head">Actions</span>}
+          </div>
+        ) : null}
 
         <div className="my-properties__content">
-          {children}
+          {hasListings ? (
+            children
+          ) : (
+            <div className="my-properties__empty-state">
+              <h2 className="my-properties__empty-title">No properties to display</h2>
+              <p className="my-properties__empty-text">
+                There are no homes or properties to display. Add one to see it here.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
 import Add from "./pages/Add";
  import Edit from './pages/Edit';
- import MyProps from "./pages/myProps";
+ import MyProperties from "./pages/myProps";
  
 
 
@@ -44,7 +44,7 @@ function App() {
             <Dashboard />
           </PageWrapper>} />
           <Route path="/my-properties" element={<PageWrapper>
-            <MyProps />
+            <MyProperties />
           </PageWrapper>} />
           <Route path="/" element={<PageWrapper>
             <Home />

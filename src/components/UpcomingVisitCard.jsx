@@ -6,13 +6,14 @@ import DashboardCardShell from "./DashboardCardShell";
 import ProfileChip from "./profile-chip";
 
 function UpcomingVisitCard({
-  visitorName = "Sarah Jenkins",
-  visitorRole = "Verified Tenant",
-  propertyName = "Luxury Penthouse",
-  visitTime = "Today - 14:30",
+  visitorName,
+  visitorRole,
+  propertyName,
+  visitTime,
   avatar = "/images/photo_2026-02-11_22-49-45.jpg",
 }) {
-  const safeVisitTime = String(visitTime).replace("·", "-");
+  const hasVisitRequest = Boolean(visitorName && propertyName && visitTime);
+  const safeVisitTime = String(visitTime || "").replace("·", "-");
   const safeAvatar = String(avatar || "").includes("avatar-placeholder")
     ? "/images/photo_2026-02-11_22-49-45.jpg"
     : avatar;
@@ -31,27 +32,35 @@ function UpcomingVisitCard({
         <span className="dashboard-panel-card__eyebrow dashboard-panel-card__eyebrow--badge">Today</span>
       </div>
 
-      <div className="dashboard-panel-card__visitor">
-        <ProfileChip image={safeAvatar} name={visitorName} role={visitorRole} />
-      </div>
+      {hasVisitRequest ? (
+        <>
+          <div className="dashboard-panel-card__visitor">
+            <ProfileChip image={safeAvatar} name={visitorName} role={visitorRole} />
+          </div>
 
-      <div className="dashboard-panel-card__details">
-        <p className="dashboard-panel-card__meta-line">
-          <DescriptionOutlinedIcon fontSize="inherit" />
-          <span>{propertyName}</span>
-        </p>
-        <p className="dashboard-panel-card__meta-line">
-          <ScheduleOutlinedIcon fontSize="inherit" />
-          <span>{safeVisitTime}</span>
-        </p>
-      </div>
+          <div className="dashboard-panel-card__details">
+            <p className="dashboard-panel-card__meta-line">
+              <DescriptionOutlinedIcon fontSize="inherit" />
+              <span>{propertyName}</span>
+            </p>
+            <p className="dashboard-panel-card__meta-line">
+              <ScheduleOutlinedIcon fontSize="inherit" />
+              <span>{safeVisitTime}</span>
+            </p>
+          </div>
 
-      <div className="dashboard-panel-card__actions">
-        <button type="button" className="dashboard-panel-card__text-btn dashboard-panel-card__text-btn--highlight">
-          <CheckCircleOutlineRoundedIcon fontSize="inherit" />
-          <span>View Request</span>
-        </button>
-      </div>
+          <div className="dashboard-panel-card__actions">
+            <button type="button" className="dashboard-panel-card__text-btn dashboard-panel-card__text-btn--highlight">
+              <CheckCircleOutlineRoundedIcon fontSize="inherit" />
+              <span>View Request</span>
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="dashboard-panel-card__empty-state">
+          <p className="dashboard-panel-card__empty-text">There are no booking requests right now.</p>
+        </div>
+      )}
     </DashboardCardShell>
   );
 }
