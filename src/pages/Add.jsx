@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextComponent from "../components/TextComponents";
+import useAddProperty from "../context/AddContext";
 
 function Add() {
   const [propertyType, setPropertyType] = useState("Store");
@@ -15,21 +16,27 @@ function Add() {
     const imageUrls = files.map(file => URL.createObjectURL(file));
     setImages(prevImages => [...prevImages, ...imageUrls]);
   };
+  const { handleAddProperty } = useAddProperty();
 
+  // const handleClick = () => {
+  //   //   // ✅ استخدم الدالة التي حصلت عليها من الـ Hook
+  //   //   handleAddProperty(); // صحيح
+  //   // };
   const removeImage = (indexToRemove) => {
     setImages(images.filter((_, index) => index !== indexToRemove));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ 
-      propertyType, 
-      description, 
-      rooms, 
-      area, 
-      price, 
-      location, 
-      images 
+    handleAddProperty();
+    console.log({
+      propertyType,
+      description,
+      rooms,
+      area,
+      price,
+      location,
+      images
     });
   };
 
@@ -37,8 +44,8 @@ function Add() {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   };
 
-   
-  const focusColor = "#8371f9";  
+
+  const focusColor = "#8371f9";
   const addPostColor = "#6366f1";
   const addPostShadow = "rgba(99, 102, 241, 0.4)";
 
@@ -92,9 +99,9 @@ function Add() {
       </div>
 
       <div style={containerStyle}>
-        <h2 style={{ 
-          fontSize: "28px", 
-          fontWeight: 700, 
+        <h2 style={{
+          fontSize: "28px",
+          fontWeight: 700,
           marginBottom: "32px",
           color: "#0f172a",
           textAlign: "center",
@@ -102,26 +109,26 @@ function Add() {
         }}>
           Add New Post
         </h2>
-        
+
         <form onSubmit={handleSubmit}>
-           
+
           <div style={{ marginBottom: "24px" }}>
-            <div style={{ 
-              fontWeight: 500, 
-              marginBottom: "8px", 
-              fontSize: "14px", 
-              color: "gray" 
+            <div style={{
+              fontWeight: 500,
+              marginBottom: "8px",
+              fontSize: "14px",
+              color: "gray"
             }}>
               {formatLabel("Property type")}
             </div>
-            <select 
-              value={propertyType} 
-              onChange={(e) => setPropertyType(e.target.value)} 
+            <select
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
               style={{
                 width: "100%",
                 padding: "14px 16px",
                 border: "1.5px solid #e2e8f0",
-                borderRadius: "20px",  
+                borderRadius: "20px",
                 fontSize: "15px",
                 backgroundColor: "#ffffff",
                 boxSizing: "border-box",
@@ -196,19 +203,19 @@ function Add() {
             />
           </div>
 
-           <div style={{ marginBottom: "30px" }}>
-            <div style={{ 
-              fontWeight: 500, 
-              marginBottom: "8px", 
-              fontSize: "14px", 
-              color: "gray" 
+          <div style={{ marginBottom: "30px" }}>
+            <div style={{
+              fontWeight: 500,
+              marginBottom: "8px",
+              fontSize: "14px",
+              color: "gray"
             }}>
               {formatLabel("Property images")}
             </div>
             <div
               style={{
                 border: "2px dashed #cbd5e1",
-                borderRadius: "20px",  
+                borderRadius: "20px",
                 padding: "40px",
                 textAlign: "center",
                 backgroundColor: "#ffffff",
@@ -226,11 +233,11 @@ function Add() {
                 onChange={handleImageChange}
                 style={{ display: "none" }}
               />
-              
+
               <div style={{
                 width: "60px",
                 height: "60px",
-                borderRadius: "20px",  
+                borderRadius: "20px",
                 background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
                 display: "flex",
                 alignItems: "center",
@@ -243,7 +250,7 @@ function Add() {
                   <line x1="12" y1="3" x2="12" y2="15" />
                 </svg>
               </div>
-              
+
               <div style={{ fontSize: "16px", color: "#64748b" }}>
                 Click or drag to upload images
               </div>
@@ -290,6 +297,7 @@ function Add() {
           <button
             type="submit"
             style={buttonStyle}
+          // onClick={() => handleClick()}
           >
             Add Post
           </button>
